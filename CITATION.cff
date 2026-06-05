@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use PlumageParts, please cite the manuscript and dataset release."
+title: "A fine-grained avian plumage segmentation dataset and benchmark for ecological image analysis"
+authors:
+  - family-names: "He"
+    given-names: "Yichen"
+  - family-names: "Ioannou"
+    given-names: "Eleftherios"
+  - family-names: "Harris"
+    given-names: "Kathryn"
+  - family-names: "Thomas"
+    given-names: "Gavin"
+  - family-names: "Maddock"
+    given-names: "Steve"
+  - family-names: "Renoult"
+    given-names: "Julien P."
+  - family-names: "Cooney"
+    given-names: "Christopher"
+year: 2026
+version: "1.0.0"
+
+repository-code: "https://github.com/echanhe/PlumageParts"
+abstract: "Code, dataset metadata and model interfaces for fine-grained segmentation of avian plumage regions."
+keywords:
+  - bird plumage
+  - semantic segmentation
+  - DINOv3
+  - computational ecology
+  - avian colouration
+# TODO: Replace with the manuscript DOI or remove until available.
+doi: "TODO"

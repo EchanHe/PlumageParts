@@ -1,0 +1,91 @@
+{
+  "train": [
+    {
+      "name": "LongestMaxSize",
+      "params": {
+        "max_size": "user_define_height"
+      }
+    },
+    {
+      "name": "PadIfNeeded",
+      "params": {
+        "min_height": "user_define_height",
+        "min_width": "user_define_width",
+        "border_mode": 0,
+        "fill": 0,
+        "fill_mask": 0
+      }
+    },
+    { "name": "HorizontalFlip", "params": { "p": 0.5 } },
+    {
+      "name": "ShiftScaleRotate",
+      "params": {
+        "shift_limit": 0.1,
+        "scale_limit": 0.25,
+        "rotate_limit": 20,
+        "p": 0.7
+      }
+    },
+    {
+      "name": "RandomBrightnessContrast",
+      "params": {
+        "brightness_limit": 0.25,
+        "contrast_limit": 0.25,
+        "p": 0.5
+      }
+    },
+    {
+      "name": "HueSaturationValue",
+      "params": {
+        "hue_shift_limit": 10,
+        "sat_shift_limit": 20,
+        "val_shift_limit": 15,
+        "p": 0.4
+      }
+    },
+    { "name": "GaussianBlur", "params": { "p": 0.2 } },
+    {
+      "name": "GaussNoise",
+      "params": {    
+        "std_range": [0.02, 0.06],   
+        "mean_range": [0.0, 0.0],
+        "per_channel": true,
+        "p": 0.2
+    }
+    },
+    {
+      "name": "Normalize",
+      "params": {
+        "mean": [0.485, 0.456, 0.406],
+        "std": [0.229, 0.224, 0.225]
+      }
+    },
+    { "name": "ToTensorV2", "params": {} }
+  ],
+  "val": [
+    {
+      "name": "LongestMaxSize",
+      "params": {
+        "max_size": "user_define_height"
+      }
+    },
+    {
+      "name": "PadIfNeeded",
+      "params": {
+        "min_height": "user_define_height",
+        "min_width": "user_define_width",
+        "border_mode": 0,
+        "fill": 0,
+        "fill_mask": 0
+      }
+    },
+    {
+      "name": "Normalize",
+      "params": {
+        "mean": [0.485, 0.456, 0.406],
+        "std": [0.229, 0.224, 0.225]
+      }
+    },
+    { "name": "ToTensorV2", "params": {} }
+  ]
+}

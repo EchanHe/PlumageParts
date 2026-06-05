@@ -1,0 +1,13 @@
+albumentations
+matplotlib
+numpy
+opencv-python
+pandas
+pillow
+scikit-image
+scikit-learn
+tensorboard
+tifffile
+tqdm
+torch
+torchvision
