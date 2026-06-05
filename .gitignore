@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+*.egg-info/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Training logs and experiment outputs
+runs/
+logs/
+wandb/
+lightning_logs/
+tensorboard/
+outputs/
+output/
+output_dts/
+predictions*/
+prediction_test_set/
+
+# Large local assets
+data/
+datasets/
+plumageparts_dataset/
+partimagenet_bird/
+cub_masks/
+weights/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.onnx
+
+# Media outputs
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.tif
+*.tiff
