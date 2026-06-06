@@ -1,15 +1,14 @@
 # PlumageParts
-
-Fine-grained plumage region segmentation for bird images and video.
+*Fine-grained plumage region segmentation for bird images and video.*
 
 **Manuscript:** PlumageParts: A fine-grained avian plumage segmentation dataset and benchmark for ecological image analysis
 **Authors:** Yichen He, Eleftherios Ioannou, Kathryn Harris, Gavin Thomas, Steve Maddock, Julien P. Renoult, Christopher Cooney
 
 PlumageParts contains the code used for training, evaluating and applying the
 models described in our manuscript on biologically meaningful avian plumage
-patches. The main dataset contains 4,705 high-resolution bird specimen images
-annotated for nine regions: head, throat, breast, belly, vent, back, coverts,
-remiges and tail.
+patches. The main annotation set provides masks for 4,705 high-resolution bird
+specimen images, covering nine regions: head, throat, breast, belly, vent, back,
+coverts, remiges and tail. Original source images are not redistributed.
 
 
 
@@ -52,22 +51,17 @@ Optional model families require their own upstream packages and weights:
 
 ## Data and Checkpoints
 
-See [DATASET.md](DATASET.md) for the detailed dataset information, including layout, mask label IDs and notes.
+See [DATASET.md](DATASET.md) for the detailed dataset information.
 
-Data can checkpoints can be found in <TODO>.
+Data and checkpoints can be found in [doi.org/10.5281/zenodo.20551408](https://doi.org/10.5281/zenodo.20551408).
 
-```text
-plumageparts_dataset/
-  train/
-    img/
-    masks/
-  val/
-    img/
-    masks/
-  test/
-    img/
-    masks/
-```
+The PlumageParts data release contains segmentation masks, split information,
+metadata and model checkpoints. It does not include the original source images.
+
+The PlumageParts source images were selected from the iRateBirds project, whose photographs are sourced from the Macaulay Library. Users should
+obtain the corresponding images from the original Macaulay Library records and
+follow the applicable source-image licence/reuse terms.
+
 
 
 Released segmentation checkpoints:
@@ -172,8 +166,8 @@ python train.py \
   --num_classes 10 \
   --output_size 1024 1024 \
   --batch_size 2 \
-  --epochs 30 \
-  --lr 1e-4 \
+  --epochs 50 \
+  --lr 1e-3 \
   --log_dir ./runs/dinov3_msu
 ```
 
@@ -208,8 +202,8 @@ python train_sam.py \
   --num_classes 10 \
   --output_size 1024 1024 \
   --batch_size 2 \
-  --epochs 30 \
-  --lr 1e-4 \
+  --epochs 50 \
+  --lr 1e-3 \
   --log_dir ./runs/sam_train
 ```
 
@@ -225,8 +219,8 @@ python train_classic.py \
   --num_classes 10 \
   --resize 512 \
   --batch_size 4 \
-  --epochs 20 \
-  --lr 1e-4 \
+  --epochs 50 \
+  --lr 1e-3 \
   --optimizer adamw \
   --log_dir ./runs/classic
 ```
@@ -258,8 +252,7 @@ For YOLO COCO models, class 14 corresponds to bird.
 ## External Benchmarks
 
 The manuscript also evaluates on CUB-200-2011 and PartImageNet-derived data.
-Those datasets should be obtained from their original sources and used according
-to their licenses:
+Those datasets should be obtained from their original sources and used according to their licenses:
 
 - CUB-200-2011: https://www.vision.caltech.edu/datasets/cub_200_2011/
 - PartImageNet: https://github.com/tacju/partimagenet
@@ -270,22 +263,21 @@ map used by the benchmark scripts.
 
 ## Citation
 
-If you use PlumageParts, please cite the manuscript. 
-<TODO> bibtex
+TODO
 
 ## License
 
-The code, annotations and model weights released in this repository are made
-available under the MIT License.
+The source code in this repository is released under the MIT License.
 
-The original PlumageParts source images are selected from the iratebirds Citizen
+The PlumageParts annotation masks, metadata, split files and trained model
+checkpoints are released through the associated Zenodo record under the licence
+specified there.
+
+The original PlumageParts source images are selected from the iRateBirds Citizen
 Science Project and are not relicensed by this repository. Please refer to the
-iratebirds dataset paper and its associated reuse terms:
+iRateBirds dataset paper and its associated reuse terms:
 
-- The iratebirds Citizen Science Project: a Dataset on Birds' Visual Aesthetic
+- The iRateBirds Citizen Science Project: a Dataset on Birds' Visual Aesthetic
   Attractiveness to Humans
 - https://www.nature.com/articles/s41597-023-02169-0
 
-CUB-200-2011 and PartImageNet images are not redistributed in the PlumageParts
-release. Users should obtain those datasets from their original sources and
-follow their respective licenses and terms of use.

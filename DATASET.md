@@ -1,19 +1,54 @@
 # PlumageParts Dataset
 
-This file describes the expected local layout for the PlumageParts annotations,
-predictions and external benchmark files. The dataset and trained checkpoints can be found in <TODO>.
+This file describes the PlumageParts annotation release and the expected local
+layout for training or evaluation. The released data and trained checkpoints can
+be found in [doi.org/10.5281/zenodo.20551408](https://doi.org/10.5281/zenodo.20551408).
 
 
 ## Main Dataset
 
-The main dataset contains 4,705 high-resolution bird specimen images annotated
-with fine-grained plumage regions.
+The main annotation set contains segmentation masks for 4,705
+bird images annotated with fine-grained plumage regions. Original
+source images are not redistributed in the PlumageParts release.
+
+The PlumageParts source images were selected from the iRateBirds Citizen Science
+Project, which is based on bird photographs from the Macaulay Library. Users
+should obtain the corresponding source images from the original source records
+and follow the applicable iRateBirds/Macaulay Library licence and reuse terms.
+
+- The iRateBirds Citizen Science Project: a Dataset on Birds' Visual Aesthetic
+  Attractiveness to Humans
+- https://www.nature.com/articles/s41597-023-02169-0
+- Figshare for iRateBirds data: [link](https://figshare.com/articles/dataset/The_iRateBirds_Citizen_Science_Project_a_Dataset_on_Birds_Visual_Aesthetic_Attractiveness_to_Humans/20170082)
+
+
+The filename stem follows the format:
+
+`<scientific_name>_<sex>_<macaulay_photo_catalog_id>`
+
+For example:
+
+`Acanthis_cabaret_Female_2043824211`
+
+The released masks use this filename stem. Masks are stored as single-channel
+PNG files:
+
+`Acanthis_cabaret_Female_2043824211.png`
+
+If users obtain the corresponding source image locally, the image should use the
+same filename stem, usually as a JPG file:
+
+`Acanthis_cabaret_Female_2043824211.jpg`
+
+For local training or evaluation, place downloaded source images and released
+masks in matching split folders.
+
 
 ```text
 plumageparts_dataset/
   train/
-    img/
-    masks/
+    img/      # source images obtained by the user
+    masks/    # released PlumageParts masks
   val/
     img/
     masks/
@@ -22,17 +57,10 @@ plumageparts_dataset/
     masks/
 ```
 
-Images are JPG. Masks are single-channel PNG files. By default, masks use the
-same filename stem as the corresponding image, with no extra suffix; for example:
+Masks are single-channel PNG files. Masks use the same filename stem
+as the corresponding image, with no extra suffix; for example:
 
-```text
-img/ABC123.jpg
-masks/ABC123.png
-```
-
-If your masks include a suffix such as `ABC123_mask.png`, pass
-`--mask_suffix _mask` to the training or inference scripts.
-
+Note: Only the annotation masks are redistributed in this release.
 
 
 
@@ -55,12 +83,11 @@ Use `--num_classes 10` for PlumageParts training and inference.
 
 ## Predictions
 
-Predicted masks from the best model can be stored as:
+Predicted masks from the best model are stored as:
 
 ```text
 plumageparts_test_prediction/
   masks/
-  overlay/
 ```
 
 ## Model Checkpoints
@@ -87,14 +114,14 @@ cub_masks/
   pred_masks/
 
 partimagenet_bird/
-  images/
+  images/       # not redistributed by PlumageParts
   gt_masks/
   pred_masks/
 ```
 
 Original sources:
-
+- iRateBirds figshare [link](https://figshare.com/articles/dataset/The_iRateBirds_Citizen_Science_Project_a_Dataset_on_Birds_Visual_Aesthetic_Attractiveness_to_Humans/20170082)
+- Macaulay Library: https://www.macaulaylibrary.org/
 - CUB-200-2011: https://www.vision.caltech.edu/datasets/cub_200_2011/
 - PartImageNet: https://github.com/tacju/partimagenet
-
 
