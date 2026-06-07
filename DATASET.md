@@ -57,8 +57,6 @@ plumageparts_dataset/
     masks/
 ```
 
-Masks are single-channel PNG files. Masks use the same filename stem
-as the corresponding image, with no extra suffix; for example:
 
 Note: Only the annotation masks are redistributed in this release.
 

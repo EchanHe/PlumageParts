@@ -7,7 +7,7 @@
 PlumageParts contains the code used for training, evaluating and applying the
 models described in our manuscript on biologically meaningful avian plumage
 patches. The main annotation set provides masks for 4,705 high-resolution bird
-specimen images, covering nine regions: head, throat, breast, belly, vent, back,
+images, covering nine regions: head, throat, breast, belly, vent, back,
 coverts, remiges and tail. Original source images are not redistributed.
 
 
