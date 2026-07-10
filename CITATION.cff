@@ -19,7 +19,7 @@ authors:
 year: 2026
 version: "1.0.0"
 
-repository-code: "https://github.com/echanhe/PlumageParts"
+repository-code: "https://github.com/EchanHe/PlumageParts"
 abstract: "Code, dataset metadata and model interfaces for fine-grained segmentation of avian plumage regions."
 keywords:
   - bird plumage

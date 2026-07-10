@@ -36,6 +36,7 @@ prediction_test_set/
 # Large local assets
 data/
 datasets/
+PlumageParts_Macaulay_images/
 plumageparts_dataset/
 partimagenet_bird/
 cub_masks/
@@ -53,3 +54,7 @@ checkpoints/
 *.mkv
 *.tif
 *.tiff
+
+# Generated dataset validation outputs
+image_mask_size_check.csv
+download_log.csv

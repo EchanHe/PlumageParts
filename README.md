@@ -1,7 +1,6 @@
 # PlumageParts
 *Fine-grained plumage region segmentation for bird images and video.*
 
-**Manuscript:** PlumageParts: A fine-grained avian plumage segmentation dataset and benchmark for ecological image analysis
 **Authors:** Yichen He, Eleftherios Ioannou, Kathryn Harris, Gavin Thomas, Steve Maddock, Julien P. Renoult, Christopher Cooney
 
 PlumageParts contains the code used for training, evaluating and applying the
@@ -26,6 +25,15 @@ PlumageParts/
   train_classic.py          UNet/DeepLab baselines
   pred.py                   Image-level DINOv3 inference and evaluation
   video_pred.py             Video or image-sequence detect-track-segment inference
+  download_dataset.py       Helper script for downloading Macaulay source images
+  add_segmentation_size_to_catalogue.py
+                            Adds released mask dimensions and split metadata
+                            to the Macaulay catalogue CSV
+  check_image_mask_sizes.py Validates downloaded image sizes against released
+                            PlumageParts mask dimensions
+  PlumageParts_Macaulay_catalogue.csv
+                            Macaulay catalogue IDs and image metadata for
+                            matching source images to PlumageParts masks
 ```
 
 ## Installation
@@ -53,14 +61,81 @@ Optional model families require their own upstream packages and weights:
 
 See [DATASET.md](DATASET.md) for the detailed dataset information.
 
-Data and checkpoints can be found in [doi.org/10.5281/zenodo.20551408](https://doi.org/10.5281/zenodo.20551408).
+The PlumageParts annotation masks, metadata, train/validation/test split
+information, prediction masks and trained model checkpoints have been deposited
+on Zenodo under the reserved DOI:
+[doi.org/10.5281/zenodo.21254480](https://doi.org/10.5281/zenodo.21254480).
+The Zenodo record is available to editors and reviewers via a private preview
+link during peer review and will be made publicly available upon publication.
 
-The PlumageParts data release contains segmentation masks, split information,
-metadata and model checkpoints. It does not include the original source images.
+The PlumageParts data release does not include the original source images.
 
-The PlumageParts source images were selected from the iRateBirds project, whose photographs are sourced from the Macaulay Library. Users should
-obtain the corresponding images from the original Macaulay Library records and
-follow the applicable source-image licence/reuse terms.
+The PlumageParts source images were selected from the iRateBirds project, whose
+photographs are sourced from the Macaulay Library. Original source images remain
+subject to the applicable Macaulay Library source-image licence and reuse terms.
+To support reproducibility, the released metadata includes the corresponding
+Macaulay Library record information, and this repository provides
+`download_dataset.py` to help users retrieve the source images and reconstruct
+the dataset locally, subject to those terms.
+
+### Download Source Images
+
+Use `download_dataset.py` to download the Macaulay Library images listed in
+`PlumageParts_Macaulay_catalogue.csv`. The default download size is 1200 pixels
+on the long edge because the released PlumageParts segmentation masks were
+annotated and aligned to the 1200-pixel-long-edge image set.
+
+Set the paths near the top of `download_dataset.py` if needed:
+
+```python
+CSV_PATH = "./PlumageParts_Macaulay_catalogue.csv"
+OUTPUT_DIR = "./PlumageParts_Macaulay_images"
+```
+
+Then run:
+
+```bash
+python download_dataset.py
+```
+
+Images are saved as:
+
+```text
+<scientific_name>_<sex>_<macaulay_photo_catalog_id>.jpg
+```
+
+The script also writes `download_log.csv`, including download status, requested
+size, catalogue resolution, final image dimensions and fallback errors. For
+higher-resolution downloads, edit:
+
+```python
+IMAGE_SIZES = ["2400", "1200"]
+```
+
+The Macaulay CDN does not accept arbitrary sizes or the string `original`; the
+catalogue width/height columns are used for metadata and validation, not as
+direct URL size tokens.
+
+To regenerate the catalogue columns for the released mask dimensions and split
+labels, run:
+
+```bash
+python add_segmentation_size_to_catalogue.py
+```
+
+To check whether downloaded images match the released mask dimensions, run:
+
+```bash
+python check_image_mask_sizes.py \
+  --catalogue PlumageParts_Macaulay_catalogue_with_segmentation_size.csv \
+  --image_dir PlumageParts_Macaulay_images \
+  --mask_root plumageparts_dataset
+```
+
+Please ensure that any downloaded Macaulay Library images are used in accordance
+with the applicable Macaulay Library and iRateBirds permissions, licences and
+reuse terms. The images are not redistributed by this repository or by the
+Zenodo release.
 
 
 
@@ -269,9 +344,9 @@ TODO
 
 The source code in this repository is released under the MIT License.
 
-The PlumageParts annotation masks, metadata, split files and trained model
-checkpoints are released through the associated Zenodo record under the licence
-specified there.
+The PlumageParts annotation masks, metadata, split files, prediction masks and
+trained model checkpoints are released through the associated Zenodo record
+under the licence specified there.
 
 The original PlumageParts source images are selected from the iRateBirds Citizen
 Science Project and are not relicensed by this repository. Please refer to the
@@ -281,3 +356,8 @@ iRateBirds dataset paper and its associated reuse terms:
   Attractiveness to Humans
 - https://www.nature.com/articles/s41597-023-02169-0
 
+Use of the Macaulay Library source photographs for this project, including for
+the creation of derived annotations and their display in the associated
+publication, has been confirmed directly with the Macaulay Library. Original
+images remain under Macaulay Library's terms and are not redistributed by this
+repository or by the Zenodo release.

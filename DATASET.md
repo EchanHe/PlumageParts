@@ -1,8 +1,12 @@
 # PlumageParts Dataset
 
 This file describes the PlumageParts annotation release and the expected local
-layout for training or evaluation. The released data and trained checkpoints can
-be found in [doi.org/10.5281/zenodo.20551408](https://doi.org/10.5281/zenodo.20551408).
+layout for training or evaluation. The PlumageParts annotation masks, metadata,
+train/validation/test split information, prediction masks and trained model
+checkpoints have been deposited on Zenodo under the reserved DOI:
+[doi.org/10.5281/zenodo.21254480](https://doi.org/10.5281/zenodo.21254480).
+The Zenodo record is available to editors and reviewers via a private preview
+link during peer review and will be made publicly available upon publication.
 
 
 ## Main Dataset
@@ -12,9 +16,12 @@ bird images annotated with fine-grained plumage regions. Original
 source images are not redistributed in the PlumageParts release.
 
 The PlumageParts source images were selected from the iRateBirds Citizen Science
-Project, which is based on bird photographs from the Macaulay Library. Users
-should obtain the corresponding source images from the original source records
-and follow the applicable iRateBirds/Macaulay Library licence and reuse terms.
+Project, which is based on bird photographs from the Macaulay Library. Original
+source images remain subject to the applicable Macaulay Library source-image
+licence and reuse terms. To support reproducibility, the released metadata
+includes the corresponding Macaulay Library record information, and
+`download_dataset.py` helps users retrieve the source images and reconstruct the
+dataset locally, subject to those terms.
 
 - The iRateBirds Citizen Science Project: a Dataset on Birds' Visual Aesthetic
   Attractiveness to Humans
@@ -58,7 +65,7 @@ plumageparts_dataset/
 ```
 
 
-Note: Only the annotation masks are redistributed in this release.
+Note: Original source images are not redistributed in this release.
 
 
 
@@ -90,7 +97,7 @@ plumageparts_test_prediction/
 
 ## Model Checkpoints
 
-The Zenodo release is expected to include two segmentation checkpoints:
+The Zenodo release includes two segmentation checkpoints:
 
 | Checkpoint | Description |
 | -- | -- |
@@ -122,4 +129,3 @@ Original sources:
 - Macaulay Library: https://www.macaulaylibrary.org/
 - CUB-200-2011: https://www.vision.caltech.edu/datasets/cub_200_2011/
 - PartImageNet: https://github.com/tacju/partimagenet
-
