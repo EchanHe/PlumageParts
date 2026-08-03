@@ -3,6 +3,8 @@
 
 **Authors:** Yichen He, Eleftherios Ioannou, Kathryn Harris, Gavin Thomas, Steve Maddock, Julien P. Renoult, Christopher Cooney
 
+**Preprint:** [bioRxiv](https://www.biorxiv.org/content/10.64898/2026.07.30.741737v1)
+
 PlumageParts contains the code used for training, evaluating and applying the
 models described in our manuscript on biologically meaningful avian plumage
 patches. The main annotation set provides masks for 4,705 high-resolution bird
